@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  padding: 10px;
+}
+
+.row {
+  padding: 10px;
+  background-color: black;
+  color: white;
+}
+
+.formgroupe {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 5px;
+  }
+  .formgroupe {
+    display: flex;
+    flex-direction: column;
+  }
+  .row {
+    background-color: red;
+    color: black;
+  }
+}
+.chien {
+  color: #ff0000;
+}
+
+.chat {
+  color: #00ff00;
+}
+
+.poisson {
+  color: #0000ff;
+}
+
+@media (min-width: 640px) {
+  .formgroupe {
+    display: contents;
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+@media (min-width: 768px) {
+  .formgroupe {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .row {
+    background-color: #00ff00;
+  }
+}
+@media (min-width: 1024px) {
+  .formgroupe {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .row {
+    background-color: black;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

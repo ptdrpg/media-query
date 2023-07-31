@@ -1,0 +1,112 @@
+@mixin grid($grid: grid, $col: repeat(12, 1fr)) {
+    display: $grid;
+    grid-template-columns: $col;
+}
+
+@function add($pix) {
+    $var: 10px;
+    $pix: $pix + $var;
+    @return $pix;
+}
+
+body {
+    margin: 0;
+    padding: add(0);
+}
+
+$light-background: #f2ece4;
+$light-text: #036;
+$dark-background: #6b717f;
+$dark-text: #d2e1dd;
+
+@mixin theme-colors($light-theme: true) {
+    @if $light-theme {
+        background-color: black;
+        color: white;
+    }
+
+    @else {
+        background-color: red;
+        color: black;
+    }
+}
+
+.row {
+    padding: add(0);
+    @include theme-colors(-theme);
+}
+
+.formgroupe{
+    @include grid(grid, repeat(3, 1fr));
+    gap: add(0);
+}
+
+@media (max-width: 768px){
+    body{
+        padding: add(-5);
+    }
+    .formgroupe{
+        display: flex;
+        flex-direction: column;
+    }
+    .row{
+        @include theme-colors(false);
+    }
+}
+
+$categories:
+    chien #ff0000,
+    chat #00ff00,
+    poisson #0000ff;
+
+@each $category in $categories{
+    .#{nth($category, 1)}{
+        color: nth($category, 2);
+    }
+} 
+
+
+@mixin bp($ngeda) {
+
+    @if $ngeda==sm {
+      @media (min-width:640px) {
+        @content;
+      }
+    }
+  
+    @if $ngeda==md {
+      @media (min-width:768px) {
+        @content;
+      }
+    }
+  
+    @if $ngeda==lg {
+      @media (min-width:1024px) {
+        @content;
+      }
+    }
+}
+
+@include bp(sm){
+    .formgroupe{
+        @include grid(contents);
+    }
+}
+
+@include bp(md){
+    .formgroupe{
+        @include grid(grid, repeat(2, 1fr));
+    }
+    .row{
+        background-color: #00ff00;
+    }
+}
+
+@include bp(lg){
+    .formgroupe{
+        @include grid(grid, repeat(3, 1fr));
+    }
+    .row{
+        background-color: black;
+    }
+}
